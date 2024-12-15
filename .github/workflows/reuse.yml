@@ -5,7 +5,7 @@ on:
       artifact-ka-name: #apne mann se rkha hua naam hai for artifact ka naam jo ayega mail file se
         description: Artifact ka naam 
         required: true #agar ye input nahi mila to poora workflow fail ho jayega(for true and opposite for false)
-        default: dist #agar koi value nahi ayega to ye walaa name use ho jayega
+        default: simonyayaya #agar koi value nahi ayega to ye walaa name use ho jayega
         type: string
         
 jobs:

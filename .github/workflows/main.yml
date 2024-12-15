@@ -44,4 +44,4 @@ jobs:
     needs: artifacts-demo #makes sure upar walaa pehle execute ho jaaye
     uses: ./.github/workflows/reuse.yml #providing the path to our reUsable workflow file
     with: 
-      artifact-ka-name: dist-files #sending out input name to the reUsable file
+      artifact-ka-name: dist #sending out input name to the reUsable file
