@@ -1,0 +1,42 @@
+name: Main file for reusable workflow
+on: workflow_dispatch
+
+jobs:
+  caching-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v3
+
+      - name: Caching deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-deps-key-${{hashFiles('/**package-lock.json')}}
+
+      - name: Installing deps
+        run: npm ci
+
+  artifacts-demo:
+    runs-on: ubuntu-latest
+    needs: caching-demo
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v3
+
+      - name: Installing deps
+        run: npm ci
+      
+      - name: running tests
+        run: npm run test
+      
+      - name: Building app
+        run: npm run build
+      
+      - name: Artifact Build with actions
+        uses: actions/upload-artifact@v3
+        with:
+          name: arti-name
+          path: |
+            dist
+            index.html
