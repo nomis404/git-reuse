@@ -40,6 +40,8 @@ jobs:
           path: |
             dist
             index.html
-  reusable-part:
-    needs: artifacts-demo
-    uses: ./.github/workflows/reuse.yml
+  reusable-part: #ye waala section will use the resuable wortkflow
+    needs: artifacts-demo #makes sure upar walaa pehle execute ho jaaye
+    uses: ./.github/workflows/reuse.yml #providing the path to our reUsable workflow file
+    with: 
+      artifact-ka-name: dist-files #sending out input name to the reUsable file
