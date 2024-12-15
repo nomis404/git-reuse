@@ -1,5 +1,5 @@
 name: Main file for reusable workflow
-on: workflow_dispatch
+on: push
 
 jobs:
   caching-demo:
@@ -40,3 +40,6 @@ jobs:
           path: |
             dist
             index.html
+  reusable-part:
+    needs: artifacts-demo
+    uses: ./.github/workflows/reuse.yml
