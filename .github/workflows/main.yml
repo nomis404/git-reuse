@@ -40,13 +40,17 @@ jobs:
           path: |
             dist
             index.html
+
   reusable-part: #ye waala section will use the resuable wortkflow
     needs: artifacts-demo #makes sure upar walaa pehle execute ho jaaye
+
     uses: ./.github/workflows/reuse.yml #providing the path to our reUsable workflow file
     with: #with is used for inputs only remember
       artifact-ka-name: arti-name #sending out input name to the reUsable file
+
    #secrets: #iske through secret pass hoga to your resuable file
      #simon-ka-secret: <$>{{ secrets.some-secret }} #this will send some-secret to simon-ka-secret in our resue file
+
   print-output-received-from-reuse:
     runs-on: ubuntu-latest
     needs: reusable-part #taaki pehle ye run ho jaaye then hm log kare aage kaam
