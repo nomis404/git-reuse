@@ -7,10 +7,19 @@ on:
         required: true #agar ye input nahi mila to poora workflow fail ho jayega(for true and opposite for false)
         default: simonyayaya #agar koi value nahi ayega to ye walaa name use ho jayega
         type: string
+    # secrets: # to accept secrets
+      # simon-ka-secret: # isme ayega tmhra secret
+        # required: false
+    outputs: #ab hum output send krenge to our main file huehuehuehue
+      hmare-workflow-ka-final-result:
+        description: Receiving outputs from our mail file
+        value: ${{jobs.deploy.outputs.build-me-recive-hua-output}} #jobs me deploy job ke andar ke andar ka output le aao
         
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      build-me-recive-hua-output: ${{steps.step-output-id.outputs.step-ke-andar-ka-result}} #steps ke andar se output reference kra hai, ab iss output ko araam se workflow level pr bula skte hai
     steps:
       - name: Getting the atrfact from the mail workflow #trying to fetch 
         uses: actions/download-artifact@v3
@@ -20,3 +29,6 @@ jobs:
         run: ls
       - name: Output info
         run: echo "This is from Reusable workflow file"
+      - name: Set result output
+        id: step-output-id #id bana diya taaki job level pr araam se reference ho sake
+        run: echo "step-ke-andar-ka-result=success" >> $GITHUB_OUTPUT #but isko jobs ke bahar bejhne ke liye pehle isko jobs tk bejhna hai as abhi ye sirf step tk hi simit hai
